@@ -1,3 +1,6 @@
+from typing import NoReturn
+
+
 class Color:
     _r: int = None
     _g: int = None
@@ -21,7 +24,7 @@ class Color:
         """ Returns class object string for debugging """
         return f"Color({self._r}, {self._g}, {self._b}, {self._a})"
 
-    def set_color(self, color: tuple[int, int, int] | tuple[int, int, int, int] | str | int) -> None:
+    def set_color(self, color: tuple[int, int, int] | tuple[int, int, int, int] | str | int) -> NoReturn:
         """ Sets the class colors
         :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
         if isinstance(color, tuple):
@@ -33,7 +36,7 @@ class Color:
         else:
             raise ValueError(f'Color must be int tuple, hex string or int, not {type(color)}')
 
-    def _set_rgb(self, color: tuple[int, int, int] | tuple[int, int, int, int]) -> None:
+    def _set_rgb(self, color: tuple[int, int, int] | tuple[int, int, int, int]) -> NoReturn:
         """ Private method
          Sets color with RGB/RGBA int tuple"""
         if len(color) == 3:  # if there is no alpha channel
@@ -47,7 +50,7 @@ class Color:
         else:
             raise ValueError(f'Color must contain 3 or 4 integer values, not {len(color)}')
 
-    def _set_hex(self, color: str) -> None:
+    def _set_hex(self, color: str) -> NoReturn:
         """ Private method
          Sets color with hex string
          :param color: Hex color string """
@@ -79,7 +82,7 @@ class Color:
         else:
             raise ValueError(f'Invalid hex color string: {color}')
 
-    def set_alpha(self, alpha: int) -> None:
+    def set_alpha(self, alpha: int) -> NoReturn:
         """Sets the alpha value of the class
         :param alpha: int value between 0 and 255"""
         self._a = self.fit(alpha)
