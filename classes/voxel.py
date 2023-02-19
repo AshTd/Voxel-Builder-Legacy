@@ -4,7 +4,7 @@ from classes.color import Color
 class Voxel:
     def __init__(self, color):
         """ Voxel class
-        :param color: tuple (r, g, b)"""
+        :param color: tuple (_r, _g, _b)"""
         self.color = Color(color)
 
     def __str__(self):

@@ -7,5 +7,5 @@ def main():
 
 
 if __name__ == '__main__':
-    print('Have a nice day!')
+    print('Have _a nice day!')
     main()

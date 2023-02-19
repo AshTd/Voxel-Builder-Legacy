@@ -12,7 +12,7 @@ class Model:
         return str(self.model[0])
 
     def set_voxel(self, coords, voxel):
-        """ Sets a specific voxel in specific coordinates
+        """ Sets _a specific voxel in specific coordinates
         :param coords: tuple (x, y, z)
         :param voxel: Color object """
         x, y, z = coords[0], coords[1], coords[2]
