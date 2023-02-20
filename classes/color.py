@@ -108,9 +108,10 @@ class Color:
         return f'{r:02x}{g:02x}{b:02x}{a:02x}'
 
     @staticmethod
-    def fit(x: int) -> int:
+    def fit(x: int | float) -> int:
         """ Fits color value to [0; 255] interval in case if function got incorrect color parameter
         :return: Returns normalized color value """
+        x = int(x)
         return max(0, min(x, 255))
 
     def blend(self, color: callable, proportion: float = 0.5) -> callable:
@@ -144,7 +145,7 @@ class Color:
         return Color((r, g, b, a))
 
     def __sub__(self, other: callable) -> callable:
-        """ Overloads "+" method
+        """ Overloads "-" method
         :param other: Color to be added """
         r2, g2, b2, a2 = other.get_rgba()
         r = self.fit(self._r - r2)
@@ -153,12 +154,18 @@ class Color:
         a = self.fit(self._a - a2)
         return Color((r, g, b, a))
 
-    def __mul__(self, other: callable) -> callable:
-        """ Overloads "+" method
+    def __mul__(self, other: callable | int) -> callable:
+        """ Overloads "*" method
         :param other: Color to be added """
-        r2, g2, b2, a2 = other.get_rgba()
-        r = self.fit(self._r * r2)
-        g = self.fit(self._g * g2)
-        b = self.fit(self._b * b2)
-        a = self.fit(self._a * a2)
-        return Color((r, g, b, a))
+        if isinstance(other, int):
+            r = self.fit(self._r * other)
+            g = self.fit(self._g * other)
+            b = self.fit(self._b * other)
+            return Color((r, g, b, self._a))
+        else:
+            r2, g2, b2, a2 = other.get_rgba()
+            r = self.fit(self._r * (r2 / 255))
+            g = self.fit(self._g * (g2 / 255))
+            b = self.fit(self._b * (b2 / 255))
+            a = self.fit(self._a * (a2 / 255))
+            return Color((r, g, b, a))
