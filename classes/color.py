@@ -119,9 +119,40 @@ class Color:
          :param proportion: Proportion of the second color to be blended with first"""
         if not (0 <= proportion <= 1):
             raise ValueError(f'Propotion must be float between 0 and 1, not {proportion}')
-        r2, g2, b2, a2 = color.get_rgba()
-        r = int(self._r * (1 - proportion)) + int(r2 * proportion)
-        g = int(self._g * (1 - proportion)) + int(g2 * proportion)
-        b = int(self._b * (1 - proportion)) + int(b2 * proportion)
-        a = int(self._a * (1 - proportion)) + int(a2 * proportion)
+        else:
+            r2, g2, b2, a2 = color.get_rgba()
+            r = int(self._r * (1 - proportion)) + int(r2 * proportion)
+            g = int(self._g * (1 - proportion)) + int(g2 * proportion)
+            b = int(self._b * (1 - proportion)) + int(b2 * proportion)
+            a = int(self._a * (1 - proportion)) + int(a2 * proportion)
+            return Color((r, g, b, a))
+
+    def __add__(self, other: callable) -> callable:
+        """ Overloads "+" method
+        :param other: Color to be added """
+        r2, g2, b2, a2 = other.get_rgba()
+        r = self.fit(self._r + r2)
+        g = self.fit(self._g + g2)
+        b = self.fit(self._b + b2)
+        a = self.fit(self._a + a2)
+        return Color((r, g, b, a))
+
+    def __sub__(self, other: callable) -> callable:
+        """ Overloads "+" method
+        :param other: Color to be added """
+        r2, g2, b2, a2 = other.get_rgba()
+        r = self.fit(self._r - r2)
+        g = self.fit(self._g - g2)
+        b = self.fit(self._b - b2)
+        a = self.fit(self._a - a2)
+        return Color((r, g, b, a))
+
+    def __mul__(self, other: callable) -> callable:
+        """ Overloads "+" method
+        :param other: Color to be added """
+        r2, g2, b2, a2 = other.get_rgba()
+        r = self.fit(self._r * r2)
+        g = self.fit(self._g * g2)
+        b = self.fit(self._b * b2)
+        a = self.fit(self._a * a2)
         return Color((r, g, b, a))
