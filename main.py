@@ -1,6 +1,6 @@
 from app import VoxelBuilder
 
-from logging import *
+from logging import basicConfig, INFO, info, error
 basicConfig(level=INFO, format='%(message)s')
 
 
