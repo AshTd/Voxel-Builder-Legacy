@@ -1,4 +1,4 @@
-from typing import NoReturn
+from typing import Union, NoReturn
 
 
 class Color:
@@ -7,7 +7,7 @@ class Color:
     _b: int = None
     _a: int = 255
 
-    def __init__(self, color: tuple[int, int, int] | tuple[int, int, int, int] | str | int):
+    def __init__(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]):
         """ Class which processes RGB colors
         :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
         if color is not None:
@@ -24,7 +24,7 @@ class Color:
         """ Returns class object string for debugging """
         return f"Color({self._r}, {self._g}, {self._b}, {self._a})"
 
-    def set_color(self, color: tuple[int, int, int] | tuple[int, int, int, int] | str | int) -> NoReturn:
+    def set_color(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]) -> NoReturn:
         """ Sets the class colors
         :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
         if isinstance(color, tuple):
@@ -36,7 +36,7 @@ class Color:
         else:
             raise ValueError(f'Color must be int tuple, hex string or int, not {type(color)}')
 
-    def _set_rgb(self, color: tuple[int, int, int] | tuple[int, int, int, int]) -> NoReturn:
+    def _set_rgb(self, color: Union[tuple[int, int, int], tuple[int, int, int, int]]) -> NoReturn:
         """ Private method
          Sets color with RGB/RGBA int tuple"""
         if len(color) == 3:  # if there is no alpha channel
@@ -108,7 +108,7 @@ class Color:
         return f'{r:02x}{g:02x}{b:02x}{a:02x}'
 
     @staticmethod
-    def fit(x: int | float) -> int:
+    def fit(x: Union[int, float]) -> int:
         """ Fits color value to [0; 255] interval in case if function got incorrect color parameter
         :return: Returns normalized color value """
         x = int(x)
@@ -154,7 +154,7 @@ class Color:
         a = self.fit(self._a - a2)
         return Color((r, g, b, a))
 
-    def __mul__(self, other: callable | int | float) -> callable:
+    def __mul__(self, other: Union[callable, int, float]) -> callable:
         """ Overloads "*" method
         :param other: Color or number to be multiplied """
         if isinstance(other, int) or isinstance(other, float):
