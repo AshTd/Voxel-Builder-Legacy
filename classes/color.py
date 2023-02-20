@@ -146,7 +146,7 @@ class Color:
 
     def __sub__(self, other: callable) -> callable:
         """ Overloads "-" method
-        :param other: Color to be added """
+        :param other: Color to be subtracted """
         r2, g2, b2, a2 = other.get_rgba()
         r = self.fit(self._r - r2)
         g = self.fit(self._g - g2)
@@ -154,10 +154,10 @@ class Color:
         a = self.fit(self._a - a2)
         return Color((r, g, b, a))
 
-    def __mul__(self, other: callable | int) -> callable:
+    def __mul__(self, other: callable | int | float) -> callable:
         """ Overloads "*" method
-        :param other: Color to be added """
-        if isinstance(other, int):
+        :param other: Color or number to be multiplied """
+        if isinstance(other, int) or isinstance(other, float):
             r = self.fit(self._r * other)
             g = self.fit(self._g * other)
             b = self.fit(self._b * other)
