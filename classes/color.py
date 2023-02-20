@@ -7,11 +7,10 @@ class Color:
     _b: int = None
     _a: int = 255
 
-    def __init__(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]):
-        """ Class which processes RGB colors
+    def __init__(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]) -> NoReturn:
+        """ Class which processes RGBA colors
         :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
-        if color is not None:
-            self.set_color(color)
+        self.set_color(color)
 
     def __str__(self) -> str:
         """ Returns class object string to work with  """
@@ -22,7 +21,7 @@ class Color:
 
     def __repr__(self) -> str:
         """ Returns class object string for debugging """
-        return f"Color({self._r}, {self._g}, {self._b}, {self._a})"
+        return f'Color({self._r}, {self._g}, {self._b}, {self._a})'
 
     def set_color(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]) -> NoReturn:
         """ Sets the class colors
@@ -157,7 +156,7 @@ class Color:
     def __mul__(self, other: Union[callable, int, float]) -> callable:
         """ Overloads "*" method
         :param other: Color or number to be multiplied """
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, Union[int, float]):
             r = self.fit(self._r * other)
             g = self.fit(self._g * other)
             b = self.fit(self._b * other)

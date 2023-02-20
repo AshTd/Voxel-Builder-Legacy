@@ -1,16 +1,35 @@
+from typing import Union, NoReturn
+
 from classes.color import Color
 
 
 class Voxel:
-    def __init__(self, color):
-        """ Voxel class
-        :param color: tuple (_r, _g, _b)"""
-        self.color = Color(color)
+    color = None
 
-    def __str__(self):
-        return self.color.get_hex()
+    def __init__(self,
+                 color: Union[callable, tuple[int, int, int], tuple[int, int, int, int], str, int] = '#fff'
+                 ) -> NoReturn:
+        """ Voxel class which represents a voxel
+        :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
+        self.set_color(color)
 
-    def set_color(self, color):
+    def __str__(self) -> str:
+        """ Returns class object string to work with """
+        return self.color.__str__()
+
+    def __repr__(self) -> str:
+        """ Returns class object string for debugging """
+        return f'Voxel({self.color.__repr__()})'
+
+    def set_color(self, color: Union[callable, tuple[int, int, int], tuple[int, int, int, int], str, int]) -> NoReturn:
         """ Sets voxel color
-        :param color: Color object """
-        self.color = color
+        :param color: Color object or value """
+        if isinstance(color, Color):
+            self.color = color
+        else:
+            self.color = Color(color)
+
+    def set_alpha(self, alpha: int) -> NoReturn:
+        """ Sets voxel alpha value
+        :param alpha: New alpha value """
+        self.color.set_alpha(alpha)
