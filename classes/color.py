@@ -127,6 +127,12 @@ class Color:
             a = int(self._a * (1 - proportion)) + int(a2 * proportion)
             return Color((r, g, b, a))
 
+    def invert(self) -> NoReturn:
+        """ Makes the color opposite to current """
+        self._r = 255 - self._r
+        self._g = 255 - self._g
+        self._b = 255 - self._b
+
     def __add__(self, other: callable) -> callable:
         """ Overloads "+" method
         :param other: Color to be added """
