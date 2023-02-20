@@ -5,7 +5,7 @@ class Color:
     _r: int = None
     _g: int = None
     _b: int = None
-    _a: int = None
+    _a: int = 255
 
     def __init__(self, color: tuple[int, int, int] | tuple[int, int, int, int] | str | int):
         """ Class which processes RGB colors
@@ -112,3 +112,16 @@ class Color:
         """ Fits color value to [0; 255] interval in case if function got incorrect color parameter
         :return: Returns normalized color value """
         return max(0, min(x, 255))
+
+    def blend(self, color: callable, proportion: float = 0.5) -> callable:
+        """ Blends two colors with proportions
+         :param color: Color object to blend with
+         :param proportion: Proportion of the second color to be blended with first"""
+        if not (0 <= proportion <= 1):
+            raise ValueError(f'Propotion must be float between 0 and 1, not {proportion}')
+        r2, g2, b2, a2 = color.get_rgba()
+        r = int(self._r * (1 - proportion)) + int(r2 * proportion)
+        g = int(self._g * (1 - proportion)) + int(g2 * proportion)
+        b = int(self._b * (1 - proportion)) + int(b2 * proportion)
+        a = int(self._a * (1 - proportion)) + int(a2 * proportion)
+        return Color((r, g, b, a))
