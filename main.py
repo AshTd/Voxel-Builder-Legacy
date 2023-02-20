@@ -1,23 +1,26 @@
 from app import VoxelBuilder
 
+from logging import *
+basicConfig(level=INFO, format='%(message)s')
+
 
 def main():
-    """ Initializes and runs the VoxelBuilder application. """
+    """ Initializes and runs the VoxelBuilder application """
     try:
         # Initialize the VoxelBuilder application
         app = VoxelBuilder()
         # Run the application
         app.run()
-        print('Done!')
+        info('Done!')
 
     except Exception as err:
         # Handling exceptions
-        print(f'Error occured while running program:')
-        print(f'{err}')
+        error(f'Error occured while running program:')
+        error(f'{err}')
         exit(1)
 
 
 if __name__ == '__main__':
     # Run the application
-    print('Starting VoxelBuilder application...')
+    info('Starting VoxelBuilder application...')
     main()
