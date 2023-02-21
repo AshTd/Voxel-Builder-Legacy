@@ -1,12 +1,14 @@
 from typing import Union, NoReturn
 import numpy as np
-
 import os
 
 from pyvox.models import Vox
 from pyvox.writer import VoxWriter
 
 from classes.voxel import Voxel
+
+from logging import basicConfig, INFO, info
+basicConfig(level=INFO, format='%(message)s')
 
 
 class Model:
@@ -18,17 +20,18 @@ class Model:
     def __init__(self, model: Union[list[list[list[Voxel]]], tuple]):
         """ 3D voxel model class
         :param model: list [x, y, z] - voxels """
-        self._x_size = len(model[0])
-        self._y_size = len(model[1])
-        self._z_size = len(model[2])
-        self.model = np.ndarray(shape=(self._x_size, self._z_size, self._z_size), dtype=Voxel)
         if isinstance(model, tuple):
             if len(model) == 3:
                 self._x_size, self._y_size, self._z_size = model
+                self.model = np.ndarray(shape=(self._x_size, self._z_size, self._z_size), dtype=Voxel)
                 self.set_empty_model()
             else:
-                raise TypeError(f'Model dimensions must be int tuple with 3 dimensions, not {len(model)}')
+                raise TypeError(f'Model shape must be int tuple with 3 dimensions, not {len(model)}')
         else:
+            self._x_size = len(model[0])
+            self._y_size = len(model[1])
+            self._z_size = len(model[2])
+            self.model = np.ndarray(shape=(self._x_size, self._z_size, self._z_size), dtype=Voxel)
             self.from_list(model)
 
     def set_empty_model(self) -> NoReturn:
@@ -49,15 +52,19 @@ class Model:
         for plane in self.model:
             for row in plane:
                 for voxel in row:
-                    if len(unique_colors) <= 255 and voxel.is_visible():
+                    if len(unique_colors) < 255 and voxel.is_visible():
                         unique_colors.add(voxel.color.get_rgba())
         self._palette = list(unique_colors)
         # Set voxels that do not fit within the palette invisible
+        all_voxels_fit_into_palette = True
         for plane in self.model:
             for row in plane:
                 for voxel in row:
                     if voxel.color.get_rgba() not in self._palette:
                         voxel.set_visible(False)
+                        all_voxels_fit_into_palette = False
+        if not all_voxels_fit_into_palette:
+            info("Some voxels didn't fit into palette, so they are invisible")
         return self._palette
 
     def __str__(self) -> str:
