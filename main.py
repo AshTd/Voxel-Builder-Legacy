@@ -1,5 +1,6 @@
 from app import VoxelBuilder
 
+from os.path import expanduser
 from logging import basicConfig, INFO, info, error
 basicConfig(level=INFO, format='%(message)s')
 
@@ -10,7 +11,7 @@ def main():
         # Initialize the VoxelBuilder application
         app = VoxelBuilder()
         # Run the application
-        app.run()
+        app.run(f'{expanduser("~")}\\Desktop')
         info('Done!')
 
     except Exception as err:
