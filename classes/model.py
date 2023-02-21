@@ -8,7 +8,7 @@ from pyvox.writer import VoxWriter
 
 from classes.voxel import Voxel
 
-from logging import basicConfig, INFO, info
+from logging import basicConfig, INFO, warning
 basicConfig(level=INFO, format='%(message)s')
 
 
@@ -65,7 +65,7 @@ class Model:
                         voxel.set_visible(False)
                         all_voxels_fit_into_palette = False
         if not all_voxels_fit_into_palette:
-            info("Some voxels didn't fit into palette, so they are invisible")
+            warning("Some voxels didn't fit into palette, so they are invisible")
         return self._palette
 
     def __str__(self) -> str:
