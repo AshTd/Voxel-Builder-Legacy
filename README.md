@@ -22,7 +22,7 @@ By algorithmically generating the content, complex models can be created with in
 ## Credits
 Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/)
 
-The project is under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) license
+Voxel Builder ©2023 by [_Dan1la](https://github.com/Dan1la-dev) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1) 
 
 ## Contacts
 If you have any questions or suggestions, please feel free to contact me at goldphoenixoriginal@mail.ru
