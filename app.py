@@ -13,5 +13,5 @@ class VoxelBuilder:
 
     @staticmethod
     def run() -> NoReturn:
-        model = rgb_cube
-        model.save_to(f'{expanduser("~")}\\Desktop', 'Test.vox')
+        default_model.save_to(f'{expanduser("~")}\\Desktop', 'Default Model.vox')
+        rgb_cube.save_to(f'{expanduser("~")}\\Desktop', 'RGB Cube.vox')
