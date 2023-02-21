@@ -25,4 +25,4 @@ Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/)
 The project is under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) license
 
 ## Contacts
-If you have any questions or suggestions, please feel free to contact me at [mailto:goldphoenixoriginal@mail.ru]
+If you have any questions or suggestions, please feel free to contact me at goldphoenixoriginal@mail.ru
