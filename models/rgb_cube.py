@@ -14,5 +14,5 @@ for x, y, z in np.ndindex(size, size, size):
 
 """
 The rgb_cube is an RGB 6x6x6 cube consisting of a red, green and blue gradients align x y and z axis.
-This model is an example how to create more complex models with this priject.
+This model is an example how to create algorithm generated models with this priject.
 """
