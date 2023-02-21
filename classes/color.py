@@ -82,9 +82,13 @@ class Color:
             raise ValueError(f'Invalid hex color string: {color}')
 
     def set_alpha(self, alpha: int) -> NoReturn:
-        """Sets the alpha value of the class
+        """ Sets the alpha value of the class
         :param alpha: int value between 0 and 255"""
         self._a = self.fit(alpha)
+
+    def get_alpha(self) -> int:
+        """ Returns the alpha value of the class """
+        return self._a
 
     def get_rgb(self) -> tuple[int, int, int]:
         """ Returns _a tuple of (_r, _g, _b) color values"""
