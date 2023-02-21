@@ -21,6 +21,7 @@ By algorithmically generating the content, complex models can be created with in
 
 ## Credits
 Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/)
+
 The project is under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) license
 
 ## Contacts
