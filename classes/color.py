@@ -31,7 +31,7 @@ class Color:
         elif isinstance(color, str):
             self._set_hex(color)
         elif isinstance(color, int):
-            self._a, self._g, self._b, self._a = color, color, color, 255
+            self._set_rgb((color, color, color, 255))
         else:
             raise ValueError(f'Color must be int tuple, hex string or int, not {type(color)}')
 
