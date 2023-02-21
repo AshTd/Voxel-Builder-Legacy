@@ -61,7 +61,7 @@ class Model:
         for plane in self.model:
             for row in plane:
                 for voxel in row:
-                    if voxel.color.get_rgba() not in self._palette:
+                    if voxel.color.get_rgba() not in self._palette and voxel.is_visible():
                         voxel.set_visible(False)
                         all_voxels_fit_into_palette = False
         if not all_voxels_fit_into_palette:
