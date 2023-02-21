@@ -26,14 +26,14 @@ class Voxel:
         return f'Voxel({self.color.__repr__()})'
 
     def set_color(self,
-                  color: Union[type(Color), tuple[int, int, int], tuple[int, int, int, int], str, int]
+                  new_color: Union[type(Color), tuple[int, int, int], tuple[int, int, int, int], str, int]
                   ) -> NoReturn:
         """ Sets voxel color
-        :param color: Color object, (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
-        if isinstance(color, Color):
-            self.color = color
+        :param new_color: Color object, (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
+        if isinstance(new_color, Color):
+            self.color = new_color
         else:
-            self.color = Color(color)
+            self.color = Color(new_color)
 
     def set_visible(self, visibility: bool) -> NoReturn:
         """ Makes the voxel _visible or hidden
