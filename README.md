@@ -17,7 +17,7 @@ By algorithmically generating the content, complex models can be created with in
 
 ## Installation
 1. Clone the repository to your local machine.
-2. Install the required packages using pip install -r requirements.txt.
+2. Install the required packages using `pip install -r requirements.txt`.
 
 ## Credits
 Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/)
