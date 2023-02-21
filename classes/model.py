@@ -25,7 +25,6 @@ class Model:
             if len(model) == 3:
                 self._x_size, self._y_size, self._z_size = model
                 self.model = np.ndarray(shape=(self._x_size, self._y_size, self._z_size), dtype=Voxel)
-                self.set_empty_model()
             else:
                 raise TypeError(f'Model shape must be int tuple with 3 dimensions, not {len(model)}')
         else:
@@ -34,11 +33,6 @@ class Model:
             self._z_size = len(model[2])
             self.model = np.ndarray(shape=(self._x_size, self._y_size, self._z_size), dtype=Voxel)
             self.from_list(model)
-
-    def set_empty_model(self) -> NoReturn:
-        """ Fills entire model with empty voxels """
-        for x, y, z in np.ndindex(*self.model.shape):
-            self.model[x, y, z] = Voxel()
 
     def from_list(self, model: list[list[list[Voxel]]]):
         """ Sets model with 3D list of voxels
@@ -53,7 +47,7 @@ class Model:
         for plane in self.model:
             for row in plane:
                 for voxel in row:
-                    if len(unique_colors) < 255 and voxel.is_visible():
+                    if voxel is not None and voxel.is_visible() and len(unique_colors) < 255:
                         unique_colors.add(voxel.color.get_rgba())
         self._palette = list(unique_colors)
         # Set voxels that do not fit within the palette invisible
@@ -61,7 +55,7 @@ class Model:
         for plane in self.model:
             for row in plane:
                 for voxel in row:
-                    if voxel.color.get_rgba() not in self._palette and voxel.is_visible():
+                    if voxel is not None and voxel.is_visible() and voxel.color.get_rgba() not in self._palette:
                         voxel.set_visible(False)
                         all_voxels_fit_into_palette = False
         if not all_voxels_fit_into_palette:
@@ -119,7 +113,8 @@ class Model:
         dense = np.ndarray(shape=(self._y_size, self._z_size, self._x_size), dtype=int)
         # Set colors IDs
         for x, y, z in np.ndindex(*self.model.shape):
-            if self.model[x, y, z].color.get_rgba() in self._palette and self.model[x, y, z].is_visible():
+            if self.model[x, y, z] is not None and self.model[x, y, z].is_visible() and \
+                    self.model[x, y, z].color.get_rgba() in self._palette:
                 dense[y, (self._z_size - 1 - z), x] = self._palette.index(self.model[x, y, z].color.get_rgba()) + 1
             else:
                 # If voxel is invisible, color ID is 0

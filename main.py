@@ -8,9 +8,7 @@ basicConfig(level=INFO, format='%(message)s')
 def main():
     """ Initializes and runs the VoxelBuilder application """
     try:
-        # Initialize the VoxelBuilder application
         app = VoxelBuilder()
-        # Run the application
         app.run(f'{expanduser("~")}\\Desktop')
         info('Done!')
 
@@ -22,6 +20,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # Run the application
-    info('Starting VoxelBuilder application...')
+    info('Starting VoxelBuilder application')
     main()
