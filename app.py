@@ -1,27 +1,17 @@
-import numpy as np
+from typing import NoReturn
 
-from pyvox.models import Vox
-from pyvox.writer import VoxWriter
-
-from os.path import expanduser
+from logging import basicConfig, INFO, info
+basicConfig(level=INFO, format='%(message)s')
 
 
 class VoxelBuilder:
     def __init__(self):
         """ Main app class """
-        self.model = [[
-                [1, 2, 3],
-                [1, 0, 3],
-                [1, 2, 3]],
-            [
-                [2, 0, 4],
-                [0, 0, 0],
-                [2, 0, 4]],
-            [
-                [3, 4, 5],
-                [3, 0, 5],
-                [3, 4, 5]]]
+        from models.noise_model import noise_model
+        self.model = noise_model
 
-    def run(self):
-        vox = Vox.from_dense(np.array(self.model))
-        VoxWriter(f'{expanduser("~")}\\Desktop\\test.vox', vox).write()
+    def run(self, path: str) -> NoReturn:
+        """ Saves models to a specific path
+         :param path: Path to save files to """
+        info(f'Saving model to {path}...')
+        self.model.save_to(path, 'Noise.vox')
