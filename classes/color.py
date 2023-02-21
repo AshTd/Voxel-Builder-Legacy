@@ -7,7 +7,7 @@ class Color:
     _b: int = None
     _a: int = 255
 
-    def __init__(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]) -> NoReturn:
+    def __init__(self, color: Union[tuple[int, int, int], tuple[int, int, int, int], str, int]):
         """ Class which processes RGBA colors
         :param color: (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
         self.set_color(color)

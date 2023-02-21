@@ -5,8 +5,7 @@ from classes.color import Color
 
 class Voxel:
     def __init__(self,
-                 color: Union[type(Color), tuple[int, int, int], tuple[int, int, int, int], str, int] = None
-                 ) -> NoReturn:
+                 color: Union[type(Color), tuple[int, int, int], tuple[int, int, int, int], str, int] = None):
         """ Voxel class which represents a voxel
         :param color: Color object, (r, g, b) or (r, g, b, a) int tuple or hex-string or int """
         self.color = None

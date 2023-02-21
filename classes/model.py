@@ -10,7 +10,7 @@ class Model:
     _z_size = None
     _palette = None
 
-    def __init__(self, model: Union[list[list[list[Voxel]]], tuple]) -> NoReturn:
+    def __init__(self, model: Union[list[list[list[Voxel]]], tuple]):
         """ 3D voxel model class
         :param model: list [x, y, z] - voxels """
         self._x_size = len(model[0])
