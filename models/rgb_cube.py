@@ -3,7 +3,7 @@ from classes.model import Model
 from classes.voxel import Voxel
 
 
-size = 4
+size = 6
 rgb_cube = Model((size, size, size))
 for x, y, z in np.ndindex(size, size, size):
     r = z * (255 // size)
