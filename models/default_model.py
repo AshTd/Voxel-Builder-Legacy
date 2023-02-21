@@ -1,8 +1,13 @@
 from classes.voxel import Voxel
 from classes.model import Model
 
-C = Voxel('#ea5')  # Color
-A = Voxel()        # Air
-default_model = Model([[[C, C, C], [C, A, C], [C, C, C]],
-                       [[C, A, C], [A, A, A], [C, A, C]],
-                       [[C, C, C], [C, A, C], [C, C, C]]])
+color = Voxel('#ea5')
+empty = Voxel()
+default_model = Model([[[color, color, color], [color, empty, color], [color, color, color]],
+                       [[color, empty, color], [empty, empty, empty], [color, empty, color]],
+                       [[color, color, color], [color, empty, color], [color, color, color]]])
+
+"""
+The default_model represents a 3D model consisting of a yellow-brown colored cube with empty inner space.
+This model is an example how to create simple models with this priject.
+"""
