@@ -1,6 +1,11 @@
 from typing import Union, NoReturn
 import numpy as np
 
+import os
+
+from pyvox.models import Vox
+from pyvox.writer import VoxWriter
+
 from classes.voxel import Voxel
 
 
@@ -25,7 +30,6 @@ class Model:
                 raise TypeError(f'Model dimensions must be int tuple with 3 dimensions, not {len(model)}')
         else:
             self.from_list(model)
-            self.create_palette()
 
     def set_empty_model(self) -> NoReturn:
         """ Fills entire model with empty voxels """
@@ -47,8 +51,8 @@ class Model:
                 for voxel in row:
                     if len(unique_colors) <= 255 and voxel.is_visible():
                         unique_colors.add(voxel.color.get_rgba())
-        self._palette = []
-        # Set color of voxels that do not fit within the palette invisible
+        self._palette = list(unique_colors)
+        # Set voxels that do not fit within the palette invisible
         for plane in self.model:
             for row in plane:
                 for voxel in row:
@@ -65,7 +69,7 @@ class Model:
         return f'Model({self.model})'
 
     def set_voxel(self, coords: tuple[int, int, int], voxel: type(Voxel)) -> NoReturn:
-        """ Sets _a specific voxel in specific coordinates
+        """ Sets a specific voxel in specific coordinates
         :param coords: (x, y, z) coordinates tuple
         :param voxel: Voxel object to be set """
         x, y, z = coords
@@ -76,7 +80,7 @@ class Model:
                              f'bounds [{self._x_size}, {self._y_size}, {self._z_size}]: ({x}, {y}, {z})')
 
     def get_voxel(self, coords: tuple[int, int, int]) -> type(Voxel):
-        """ Sets _a specific voxel in specific coordinates
+        """ Sets a specific voxel in specific coordinates
         :param coords: (x, y, z) coordinates tuple """
         x, y, z = coords
         if 0 <= x < self._x_size and 0 <= y < self._y_size and 0 <= z < self._z_size:
@@ -84,3 +88,32 @@ class Model:
         else:
             raise ValueError(f'Voxel coordinates are out of model'
                              f'bounds [{self._x_size}, {self._y_size}, {self._z_size}]: ({x}, {y}, {z})')
+
+    def save_to(self, path: str, file: str) -> NoReturn:
+        """ Saves the model into .vox file
+        :param path: Save file path 'C:\\RandomDirectory'
+        :param file: Save file name 'text.vox' """
+        dense = self._to_dense()
+        vox = Vox.from_dense(dense)
+        vox.palette = self._palette
+        if os.path.exists(path):
+            if file[-4:] != '.vox':
+                raise NameError(f"File should have '.vox' format: {file}.vox")
+            else:
+                VoxWriter(f'{path}\\{file}', vox).write()
+        else:
+            raise NotADirectoryError(f'Save file path not found: {path}')
+
+    def _to_dense(self) -> np.ndarray:
+        """ Converts Model to NumPy array with palette colors IDs """
+        self.create_palette()
+        # Creating empty array of color IDs
+        dense = np.ndarray(shape=(self._x_size, self._y_size, self._z_size), dtype=int)
+        # Set colors IDs
+        for x, y, z in np.ndindex(*self.model.shape):
+            if self.model[x][y][z].color.get_rgba() in self._palette and self.model[x][y][z].is_visible():
+                dense[x][y][z] = self._palette.index(self.model[x][y][z].color.get_rgba()) + 1
+            else:
+                # If voxel is invisible, color ID is 0
+                dense[x][y][z] = 0
+        return dense

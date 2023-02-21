@@ -1,8 +1,5 @@
 import numpy as np
 
-from pyvox.models import Vox
-from pyvox.writer import VoxWriter
-
 from os.path import expanduser
 
 from classes.color import Color
@@ -30,6 +27,4 @@ class VoxelBuilder:
     def run(self):
         model = [[[voxel for voxel in row] for row in plane] for plane in self.colors]
         m = Model(model)
-        vox = Vox.from_dense(np.array(self.default_model))
-        vox.palette = self.default_palette
-        VoxWriter(f'{expanduser("~")}\\Desktop\\test.vox', vox).write()
+        m.save_to(f'{expanduser("~")}\\Desktop', 'test.vox')
