@@ -19,5 +19,4 @@ for x, y, z in tqdm(np.ndindex(size, size, size), ncols=69, ascii=' 123456789#',
 """
 The noise represents a model consisting of a Perlin noise cube.
 This model is an example how to create complex models with this priject.
-WARNING: Big models need a lot of RAM
 """
