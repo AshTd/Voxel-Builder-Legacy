@@ -5,8 +5,8 @@ The Voxel Builder is a Python-based project that allows you to create beautiful 
 
 By algorithmically generating the content, complex models can be created with intricate details without any manual design.
 
-![Neon-Dumplings-Lime-Slice.png](./images/renders/Neon-Dumplings-Lime-Slice.png)
-![Neon-Dumplings-Lime-Dark.png](./images/renders/Neon-Dumplings-Lime-Dark.png)
+![Dumplings-Slice](./images/renders/Dumplings-Slice.png)
+![Dumplings-Dark](./images/renders/Dumplings-Dark.png)
 
 *Voxels are small cubic elements that are used to create a three-dimensional grid in virtual environment. Much like a pixel represents a 2D unit of space in a digital image!
 
