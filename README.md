@@ -26,13 +26,23 @@ By algorithmically generating the content, complex models can be created with in
 5. Enjoy exploring endless possibilities using my humble project! <br>
    *Ok, this is awkward...*
 
-## Credits
-Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/), [Minecraft](https://www.minecraft.net)
-
-Voxel Builder ©2023 by [_Dan1la](https://github.com/Dan1la-dev) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0) license.
-
 ## Contributing
 Contributions to the Voxel Builder project are always welcome! If you have any ideas for new features or improvements, you can always write me your suggestions.
 
 ## Contacts
 Feel free to contact me at goldphoenixoriginal@mail.ru
+
+## Examples
+There is a variety of things that Voxel Builder can do.
+
+![Cliff](./images/renders/Cliff.png)
+![Stained-Glass](./images/renders/Stained-Glass.png)
+![Pillars](./images/renders/Pillars.png)
+![Mars](./images/renders/Mars.png)
+
+See more examples in `./images/renders/`!
+
+## Credits
+Inspired by: [John Kunz](https://www.johnkunz.com/geometric-landscapes/), [Minecraft](https://www.minecraft.net)
+
+Voxel Builder ©2023 by [_Dan1la](https://github.com/Dan1la-dev) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0) license.
